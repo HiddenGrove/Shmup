@@ -3,6 +3,8 @@
 
 Application::Application() {
     window.create(sf::VideoMode(WIDTH, HEIGHT), "shmup");
+    window.setKeyRepeatEnabled(false);
+    // use input() for repeating keys, update() for non-repeating keys
 }
 
 Ship ship;
