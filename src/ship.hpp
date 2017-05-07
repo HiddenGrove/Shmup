@@ -6,10 +6,12 @@
 class Ship {
 private:
 public:
-    int x, y;
+    float x, y;
+    float speed;
     sf::Sprite sprite;
 
-    Ship(int x, int y, sf::Sprite sprite);
+    Ship();
+    Ship(float x, float y, float speed, sf::Sprite sprite);
 };
 
 #endif

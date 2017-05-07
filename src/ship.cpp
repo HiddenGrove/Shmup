@@ -1,5 +1,9 @@
 #include "ship.hpp"
 
-Ship::Ship(int x, int y, sf::Sprite sprite) : x(x), y(y), sprite(sprite) {
+Ship::Ship() {
+
+}
+
+Ship::Ship(float x, float y, float speed, sf::Sprite sprite) : x(x), y(y), speed(speed), sprite(sprite) {
     
 }

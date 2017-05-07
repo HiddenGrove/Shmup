@@ -2,21 +2,22 @@
 #include "ship.hpp"
 
 Application::Application() {
-    window.create(sf::VideoMode(800, 600), "shmup");
+    window.create(sf::VideoMode(WIDTH, HEIGHT), "shmup");
 }
 
+Ship ship;
+
 void Application::start() {
-    // turn into resource manager
-    sf::Texture ship_texture;
-    if (!ship_texture.loadFromFile("res/ship.png")) {
-        window.close();
-    }
+    rm.loadTexture("ship", "ship");
 
-    sf::Sprite ship_sprite;
-    ship_sprite.setTexture(ship_texture);
+    ship.x = WIDTH / 2 - 32;
+    ship.y = HEIGHT - 64;
+    ship.sprite.setTexture(rm.texture_map["ship"]);
+    ship.speed = 0.5;
 
-    Ship ship(0, 0, ship_sprite);
-
+    sf::Clock clock;
+    sf::Time accumulator = sf::Time::Zero;
+    sf::Time ups = sf::seconds(1.f / 60.f);
 
     while (window.isOpen()) {
          sf::Event event;
@@ -25,36 +26,47 @@ void Application::start() {
              handleEvents(event);
          }
 
-         window.clear(sf::Color::Black);
-         window.draw(ship.sprite);
-         window.display();
+         while (accumulator > ups) {
+             accumulator -= ups;
+             update();
+         }
+
+         input();
+         draw();
+
+         accumulator += clock.restart();
+
     }
 }
 
 void Application::draw() {
-
+    window.clear(sf::Color::Black);
+    window.draw(ship.sprite);
+    window.display();
 }
 
 void Application::update() {
-    
+
 }
 
 void Application::input() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        
+        ship.x -= ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-    
+        ship.x += ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-    
+        ship.y -= ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-    
+        ship.y += ship.speed;
     }
+
+    ship.sprite.setPosition(sf::Vector2f(ship.x, ship.y));
 }
 
 void Application::handleEvents(sf::Event event) {
