@@ -9,6 +9,10 @@ private:
 public:
     Application();
     void start();
+    void draw();
+    void input();
+    void update();
+    void handleEvents(sf::Event event);
 };
 
 #endif
