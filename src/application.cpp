@@ -8,7 +8,7 @@ Application::Application() {
 Ship ship;
 
 void Application::start() {
-    rm.loadTexture("ship", "ship");
+    rm.loadTexture("ship", "spaceship");
 
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
@@ -51,19 +51,23 @@ void Application::update() {
 
 void Application::input() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        ship.x -= ship.speed;
+        if (ship.x - ship.speed < 0) ship.x = 0;
+        else ship.x -= ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        ship.x += ship.speed;
+        if (ship.x + 64 + ship.speed > WIDTH) ship.x = WIDTH - 64;
+        else ship.x += ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        ship.y -= ship.speed;
+        if (ship.y - ship.speed < 0) ship.y = 0;
+        else ship.y -= ship.speed;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        ship.y += ship.speed;
+        if (ship.y + 64 + ship.speed > HEIGHT) ship.y = HEIGHT - 64;
+        else ship.y += ship.speed;
     }
 
     ship.sprite.setPosition(sf::Vector2f(ship.x, ship.y));
