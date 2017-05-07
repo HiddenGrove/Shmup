@@ -10,6 +10,17 @@ Ship ship;
 void Application::start() {
     rm.loadTexture("ship", "spaceship");
 
+    rm.loadSound("death", "death2");
+    rm.loadSound("explosion", "explosion2");
+    rm.loadSound("hurt", "hurt5");
+    rm.loadSound("missile1", "missile3");
+    rm.loadSound("missile2", "missile5");
+    rm.loadSound("power-up", "power-up3");
+    rm.loadSound("shoot1", "shoot1");
+    rm.loadSound("shoot2", "shoot2");
+    rm.loadSound("shoot3", "shoot3");
+    rm.loadSound("shoot4", "shoot4");
+
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
     ship.sprite.setTexture(rm.texture_map["ship"]);
@@ -71,6 +82,14 @@ void Application::input() {
     }
 
     ship.sprite.setPosition(sf::Vector2f(ship.x, ship.y));
+
+    /*
+    rm.loadSound("power-up", "power-up3");
+    rm.loadSound("shoot1", "shoot1");
+    rm.loadSound("shoot2", "shoot2");
+    rm.loadSound("shoot3", "shoot3");
+    rm.loadSound("shoot4", "shoot4");
+    */
 }
 
 void Application::handleEvents(sf::Event event) {
@@ -78,5 +97,15 @@ void Application::handleEvents(sf::Event event) {
 
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Escape) window.close();
+        if (event.key.code == sf::Keyboard::Num1) rm.sound_map["death"].play();
+        if (event.key.code == sf::Keyboard::Num2) rm.sound_map["explosion"].play();
+        if (event.key.code == sf::Keyboard::Num3) rm.sound_map["hurt"].play();
+        if (event.key.code == sf::Keyboard::Num4) rm.sound_map["missile1"].play();
+        if (event.key.code == sf::Keyboard::Num5) rm.sound_map["missile2"].play();
+        if (event.key.code == sf::Keyboard::Num6) rm.sound_map["power-up"].play();
+        if (event.key.code == sf::Keyboard::Num7) rm.sound_map["shoot1"].play();
+        if (event.key.code == sf::Keyboard::Num8) rm.sound_map["shoot2"].play();
+        if (event.key.code == sf::Keyboard::Num9) rm.sound_map["shoot3"].play();
+        if (event.key.code == sf::Keyboard::Num0) rm.sound_map["shoot4"].play();
     }
 }
