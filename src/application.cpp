@@ -10,7 +10,7 @@ Application::Application() {
 Ship ship;
 
 void Application::start() {
-    rm.loadTexture("ship", "spaceship");
+    rm.loadTexture("ship", "jet");
 
     rm.loadSound("death", "death2");
     rm.loadSound("explosion", "explosion2");
@@ -22,6 +22,7 @@ void Application::start() {
     rm.loadSound("shoot2", "shoot2");
     rm.loadSound("shoot3", "shoot3");
     rm.loadSound("shoot4", "shoot4");
+    rm.loadSound("testsong1", "music/testsong1");
 
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
@@ -109,5 +110,6 @@ void Application::handleEvents(sf::Event event) {
         if (event.key.code == sf::Keyboard::Num8) rm.sound_map["shoot2"].play();
         if (event.key.code == sf::Keyboard::Num9) rm.sound_map["shoot3"].play();
         if (event.key.code == sf::Keyboard::Num0) rm.sound_map["shoot4"].play();
+        if (event.key.code == sf::Keyboard::Z) rm.sound_map["testsong1"].play();
     }
 }
