@@ -10,19 +10,19 @@ Application::Application() {
 Ship ship;
 
 void Application::start() {
-    rm.loadTexture("ship", "jet");
+    rm.loadTexture("ship", "jet.png");
 
-    rm.loadSound("death", "death2");
-    rm.loadSound("explosion", "explosion2");
-    rm.loadSound("hurt", "hurt5");
-    rm.loadSound("missile1", "missile3");
-    rm.loadSound("missile2", "missile5");
-    rm.loadSound("power-up", "power-up3");
-    rm.loadSound("shoot1", "shoot1");
-    rm.loadSound("shoot2", "shoot2");
-    rm.loadSound("shoot3", "shoot3");
-    rm.loadSound("shoot4", "shoot4");
-    rm.loadSound("testsong1", "music/testsong1");
+    rm.loadSound("death", "death2.wav");
+    rm.loadSound("explosion", "explosion2.wav");
+    rm.loadSound("hurt", "hurt5.wav");
+    rm.loadSound("missile1", "missile3.wav");
+    rm.loadSound("missile2", "missile5.wav");
+    rm.loadSound("power-up", "power-up3.wav");
+    rm.loadSound("shoot1", "shoot1.wav");
+    rm.loadSound("shoot2", "shoot2.wav");
+    rm.loadSound("shoot3", "shoot3.wav");
+    rm.loadSound("shoot4", "shoot4.wav");
+    rm.loadSound("testsong1", "music/testsong1.wav");
 
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
