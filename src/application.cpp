@@ -1,5 +1,7 @@
 #include "application.hpp"
+#include "level.hpp"
 #include "ship.hpp"
+#include "enemy.hpp"
 
 Application::Application() {
     window.create(sf::VideoMode(WIDTH, HEIGHT), "shmup");
@@ -8,9 +10,13 @@ Application::Application() {
 }
 
 Ship ship;
+Level lvl;
 
 void Application::start() {
-    rm.loadTexture("ship", "jet.png");
+    rm.loadTexture("ship", "jet_003.png");
+    rm.loadTexture("alpha", "ship_001.png");
+    rm.loadTexture("beta", "ship_002.png");
+    rm.loadTexture("gamma", "ship_003.png");
 
     rm.loadSound("death", "death2.wav");
     rm.loadSound("explosion", "explosion2.wav");
@@ -32,6 +38,22 @@ void Application::start() {
     sf::Clock clock;
     sf::Time accumulator = sf::Time::Zero;
     sf::Time ups = sf::seconds(1.f / 60.f);
+
+    Enemy a;
+    a.setXY(20, 20);
+    a.sprite.setTexture(rm.texture_map["alpha"]);
+
+    Enemy b;
+    b.setXY(120, 20);
+    b.sprite.setTexture(rm.texture_map["beta"]);
+
+    Enemy c;
+    c.setXY(220, 20);
+    c.sprite.setTexture(rm.texture_map["gamma"]);
+
+    lvl.enemies.push_back(a);
+    lvl.enemies.push_back(b);
+    lvl.enemies.push_back(c);
 
     while (window.isOpen()) {
          sf::Event event;
@@ -56,6 +78,9 @@ void Application::start() {
 void Application::draw() {
     window.clear(sf::Color::Black);
     window.draw(ship.sprite);
+    for (Enemy e : lvl.enemies) {
+        window.draw(e.sprite);
+    }
     window.display();
 }
 
@@ -100,6 +125,7 @@ void Application::handleEvents(sf::Event event) {
 
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Escape) window.close();
+        if (event.key.code == sf::Keyboard::F2) takeScreenshot();
         if (event.key.code == sf::Keyboard::Num1) rm.sound_map["death"].play();
         if (event.key.code == sf::Keyboard::Num2) rm.sound_map["explosion"].play();
         if (event.key.code == sf::Keyboard::Num3) rm.sound_map["hurt"].play();
@@ -112,4 +138,13 @@ void Application::handleEvents(sf::Event event) {
         if (event.key.code == sf::Keyboard::Num0) rm.sound_map["shoot4"].play();
         if (event.key.code == sf::Keyboard::Z) rm.sound_map["testsong1"].play();
     }
+}
+
+void Application::takeScreenshot() {
+    sf::Vector2u windowSize = window.getSize();
+    sf::Texture texture;
+    texture.create(windowSize.x, windowSize.y);
+    texture.update(window);
+    sf::Image screenshot = texture.copyToImage();
+    screenshot.saveToFile("screenshot.png");
 }

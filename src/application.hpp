@@ -18,6 +18,7 @@ public:
     void input();
     void update();
     void handleEvents(sf::Event event);
+    void takeScreenshot();
 };
 
 #endif
