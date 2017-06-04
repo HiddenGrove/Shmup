@@ -55,7 +55,7 @@ bool ResourceManager::loadSpaceBackground(int width, int height) {
     sf::Texture background_txt;
     sf::Color star_colors[] = {sf::Color(255, 255, 255), sf::Color(165, 225, 225), sf::Color(220, 220, 220), sf::Color(100, 240, 240)};
 
-    background_img.create(width, height);
+    background_img.create(width, height, sf::Color(30, 30, 30));
 
     for (int i = 0; i < 100; i++) {
         background_img.setPixel(Random::intInRange(0, width), Random::intInRange(0, height), star_colors[Random::intInRange(0, 3)]);
