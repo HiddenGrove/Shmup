@@ -11,24 +11,13 @@ Application::Application() {
 
 Ship ship;
 Level lvl;
+sf::Sprite background;
 
 void Application::start() {
-    rm.loadTexture("ship", "jet_003.png");
-    rm.loadTexture("alpha", "ship_001.png");
-    rm.loadTexture("beta", "ship_002.png");
-    rm.loadTexture("gamma", "ship_003.png");
+    rm.loadResources();
+    rm.loadSpaceBackground(WIDTH, HEIGHT);
 
-    rm.loadSound("death", "death2.wav");
-    rm.loadSound("explosion", "explosion2.wav");
-    rm.loadSound("hurt", "hurt5.wav");
-    rm.loadSound("missile1", "missile3.wav");
-    rm.loadSound("missile2", "missile5.wav");
-    rm.loadSound("power-up", "power-up3.wav");
-    rm.loadSound("shoot1", "shoot1.wav");
-    rm.loadSound("shoot2", "shoot2.wav");
-    rm.loadSound("shoot3", "shoot3.wav");
-    rm.loadSound("shoot4", "shoot4.wav");
-    rm.loadSound("testsong1", "music/testsong1.wav");
+    background.setTexture(rm.texture_map["background"]);
 
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
@@ -76,7 +65,8 @@ void Application::start() {
 }
 
 void Application::draw() {
-    window.clear(sf::Color::Black);
+    window.draw(background);
+    // window.clear(sf::Color::Black);
     window.draw(ship.sprite);
     for (Enemy e : lvl.enemies) {
         window.draw(e.sprite);
@@ -110,14 +100,6 @@ void Application::input() {
     }
 
     ship.sprite.setPosition(sf::Vector2f(ship.x, ship.y));
-
-    /*
-    rm.loadSound("power-up", "power-up3");
-    rm.loadSound("shoot1", "shoot1");
-    rm.loadSound("shoot2", "shoot2");
-    rm.loadSound("shoot3", "shoot3");
-    rm.loadSound("shoot4", "shoot4");
-    */
 }
 
 void Application::handleEvents(sf::Event event) {

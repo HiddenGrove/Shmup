@@ -12,8 +12,10 @@ public:
     std::map<std::string, sf::SoundBuffer> sound_buffer_map;
     std::map<std::string, sf::Sound> sound_map;
 
+    bool loadResources();
     bool loadTexture(std::string key, std::string filename);
     bool loadSound(std::string key, std::string filename);
+    bool loadSpaceBackground(int width, int height);
 };
 
 #endif
