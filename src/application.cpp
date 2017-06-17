@@ -27,22 +27,11 @@ void Application::start() {
     sf::Clock clock;
     sf::Time accumulator = sf::Time::Zero;
     sf::Time ups = sf::seconds(1.f / 60.f);
-
-    Enemy a;
-    a.setXY(20, 20);
-    a.sprite.setTexture(rm.texture_map["alpha"]);
-
-    Enemy b;
-    b.setXY(120, 20);
-    b.sprite.setTexture(rm.texture_map["beta"]);
-
-    Enemy c;
-    c.setXY(220, 20);
-    c.sprite.setTexture(rm.texture_map["gamma"]);
-
-    lvl.enemies.push_back(a);
-    lvl.enemies.push_back(b);
-    lvl.enemies.push_back(c);
+    
+    lvl.initTestEnemies();
+    lvl.enemies[0].sprite.setTexture(rm.texture_map["alpha"]);
+    lvl.enemies[1].sprite.setTexture(rm.texture_map["beta"]);
+    lvl.enemies[2].sprite.setTexture(rm.texture_map["gamma"]);
 
     while (window.isOpen()) {
          sf::Event event;
