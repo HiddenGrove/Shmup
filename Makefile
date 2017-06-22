@@ -6,9 +6,11 @@ TARGET=bin/shmup
 LIBS=-lsfml-system -lsfml-graphics -lsfml-window -lsfml-audio
 
 $(TARGET): $(OBJECTS)
+	mkdir -p bin
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS) 
 
 obj/%.o: src/%.cpp
+	mkdir -p obj
 	$(CXX) $(CXXFLAGS) -c -o $@ $< $(LIBS)
 
 clean:
