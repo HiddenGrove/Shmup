@@ -55,7 +55,6 @@ void Application::start() {
 
 void Application::draw() {
     window.draw(background);
-    // window.clear(sf::Color::Black);
     window.draw(ship.sprite);
     for (Enemy e : lvl.enemies) {
         window.draw(e.sprite);
