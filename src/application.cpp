@@ -32,6 +32,9 @@ void Application::start() {
     lvl.enemies[0].sprite.setTexture(rm.texture_map["alpha"]);
     lvl.enemies[1].sprite.setTexture(rm.texture_map["beta"]);
     lvl.enemies[2].sprite.setTexture(rm.texture_map["gamma"]);
+    lvl.enemies[3].sprite.setTexture(rm.texture_map["delta"]);
+    lvl.enemies[4].sprite.setTexture(rm.texture_map["epsilon"]);
+    lvl.enemies[5].sprite.setTexture(rm.texture_map["zeta"]);
 
     while (window.isOpen()) {
          sf::Event event;

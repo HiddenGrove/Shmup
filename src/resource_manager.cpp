@@ -35,6 +35,9 @@ bool ResourceManager::loadResources() {
     if (!loadTexture("alpha", "ship_001.png")) return false;
     if (!loadTexture("beta", "ship_002.png")) return false;
     if (!loadTexture("gamma", "ship_003.png")) return false;
+    if (!loadTexture("delta", "ship_004.png")) return false;
+    if (!loadTexture("epsilon", "ship_005.png")) return false;
+    if (!loadTexture("zeta", "ship_006.png")) return false;
 
     if (!loadSound("death", "death2.wav")) return false;
     if (!loadSound("explosion", "explosion2.wav")) return false;
@@ -50,6 +53,7 @@ bool ResourceManager::loadResources() {
 
     return true;
 }
+
 bool ResourceManager::loadSpaceBackground(int width, int height) {
     sf::Image background_img;
     sf::Texture background_txt;

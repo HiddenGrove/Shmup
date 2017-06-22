@@ -4,8 +4,10 @@ Enemy::Enemy() {
 
 }
     
-Enemy::Enemy(float x, float y, sf::Sprite sprite) {
-
+Enemy::Enemy(float x, float y) {
+    this->x = x;
+    this->y = y;
+        sprite.setPosition(sf::Vector2f(x, y));
 }
 
 void Enemy::setXY(float x, float y) {

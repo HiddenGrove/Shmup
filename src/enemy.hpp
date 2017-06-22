@@ -10,7 +10,7 @@ public:
     sf::Sprite sprite;
 
     Enemy();
-    Enemy(float x, float y, sf::Sprite sprite);
+    Enemy(float x, float y);
 
     void setXY(float x, float y);
     float getX();

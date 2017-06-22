@@ -5,13 +5,10 @@ Level::Level() {
 }
 
 void Level::initTestEnemies() {
-    Enemy a;
-    a.setXY(20, 20);
-    enemies.push_back(a);
-    Enemy b;
-    b.setXY(120, 20);
-    enemies.push_back(b);
-    Enemy c;
-    c.setXY(220, 20);
-    enemies.push_back(c);
+    enemies.push_back(Enemy(20, 20));
+    enemies.push_back(Enemy(120, 20));
+    enemies.push_back(Enemy(220, 20));
+    enemies.push_back(Enemy(320, 20));
+    enemies.push_back(Enemy(420, 20));
+    enemies.push_back(Enemy(520, 20));
 }
