@@ -14,6 +14,6 @@ obj/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $< $(LIBS)
 
 clean:
-	rm $(TARGET)
 	find . -name '*.gch' -type f -delete
 	find . -name '*.o' -type f -delete
+	rm $(TARGET)
