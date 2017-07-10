@@ -15,7 +15,6 @@ public:
     bool loadResources();
     bool loadTexture(std::string key, std::string filename);
     bool loadSound(std::string key, std::string filename);
-    bool loadSpaceBackground(int width, int height);
 };
 
 #endif

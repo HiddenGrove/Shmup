@@ -9,7 +9,7 @@ private:
     sf::RenderWindow window;
 public:
     const int WIDTH = 800;
-    const int HEIGHT = 600;
+    const int HEIGHT = 640;
     ResourceManager rm;
 
     Application();

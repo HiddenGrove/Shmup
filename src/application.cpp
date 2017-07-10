@@ -11,13 +11,9 @@ Application::Application() {
 
 Ship ship;
 Level lvl;
-sf::Sprite background;
 
 void Application::start() {
     rm.loadResources();
-    rm.loadSpaceBackground(WIDTH, HEIGHT);
-
-    background.setTexture(rm.texture_map["background"]);
 
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
@@ -29,12 +25,14 @@ void Application::start() {
     sf::Time ups = sf::seconds(1.f / 60.f);
     
     lvl.initTestEnemies();
+    /*
     lvl.enemies[0].sprite.setTexture(rm.texture_map["alpha"]);
     lvl.enemies[1].sprite.setTexture(rm.texture_map["beta"]);
     lvl.enemies[2].sprite.setTexture(rm.texture_map["gamma"]);
     lvl.enemies[3].sprite.setTexture(rm.texture_map["delta"]);
     lvl.enemies[4].sprite.setTexture(rm.texture_map["epsilon"]);
     lvl.enemies[5].sprite.setTexture(rm.texture_map["zeta"]);
+    */
 
     while (window.isOpen()) {
          sf::Event event;
@@ -57,7 +55,7 @@ void Application::start() {
 }
 
 void Application::draw() {
-    window.draw(background);
+    window.clear();
     window.draw(ship.sprite);
     for (Enemy e : lvl.enemies) {
         window.draw(e.sprite);
