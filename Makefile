@@ -16,4 +16,5 @@ obj/%.o: src/%.cpp
 clean:
 	find . -name '*.gch' -type f -delete
 	find . -name '*.o' -type f -delete
-	rm $(TARGET)
+	rm -f core
+	rm -f $(TARGET)
