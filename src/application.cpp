@@ -2,6 +2,8 @@
 #include "level.hpp"
 #include "ship.hpp"
 #include "enemy.hpp"
+#include "vector"
+#include "random.hpp"
 
 Application::Application() {
     window.create(sf::VideoMode(WIDTH, HEIGHT), "shmup");
@@ -11,10 +13,9 @@ Application::Application() {
 
 Ship ship;
 Level lvl;
+sf::Sprite background;
 
 void Application::start() {
-    rm.loadResources();
-
     ship.x = WIDTH / 2 - 32;
     ship.y = HEIGHT - 64;
     ship.sprite.setTexture(rm.texture_map["ship"]);
@@ -23,7 +24,10 @@ void Application::start() {
     sf::Clock clock;
     sf::Time accumulator = sf::Time::Zero;
     sf::Time ups = sf::seconds(1.f / 60.f);
-    
+
+    sf::Sprite tmp_background(rm.texture_map["background"], sf::IntRect(0, 0, WIDTH, HEIGHT));
+    background = tmp_background;
+
     lvl.initTestEnemies();
     /*
     lvl.enemies[0].sprite.setTexture(rm.texture_map["alpha"]);
@@ -50,16 +54,17 @@ void Application::start() {
          draw();
 
          accumulator += clock.restart();
-
     }
 }
 
 void Application::draw() {
-    window.clear();
+    window.draw(background);
+
     window.draw(ship.sprite);
     for (Enemy e : lvl.enemies) {
         window.draw(e.sprite);
     }
+
     window.display();
 }
 

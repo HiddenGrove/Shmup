@@ -3,6 +3,10 @@
 #include "random.hpp"
 #include "resource_manager.hpp"
 
+ResourceManager::ResourceManager() {
+    loadResources();
+}
+
 bool ResourceManager::loadTexture(std::string key, std::string filename) {
     sf::Texture texture;
 
@@ -50,6 +54,36 @@ bool ResourceManager::loadResources() {
     if (!loadSound("shoot3", "shoot3.wav")) return false;
     if (!loadSound("shoot4", "shoot4.wav")) return false;
     if (!loadSound("testsong1", "music/testsong1.wav")) return false;
+
+    createBackground("background");
+
+    return true;
+}
+
+bool ResourceManager::createBackground(std::string key) {
+	int width = 160, height = 160;
+
+    sf::Image background_img;
+    background_img.create(width, height, sf::Color(30, 30, 30));
+    sf::Texture background_txt;
+    sf::Color star_colors[] = {
+        sf::Color(255, 255, 255),
+        sf::Color(165, 225, 225),
+        sf::Color(220, 220, 220),
+        sf::Color(100, 240, 240)
+    };
+
+    for (int i = 0; i < 10; i++) {
+        background_img.setPixel(
+            Random::intInRange(0, width),
+            Random::intInRange(0, height),
+            star_colors[Random::intInRange(0, 3)]
+        );
+    }
+    
+    background_txt.loadFromImage(background_img);
+    background_txt.setRepeated(true);
+    texture_map[key] = background_txt;
 
     return true;
 }
